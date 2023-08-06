@@ -10,7 +10,13 @@ return require('packer').startup(function(use)
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.1',
 		-- or                            , branch = '0.1.x',
-		requires = { { 'nvim-lua/plenary.nvim' } }
+		requires = {
+			{ 'nvim-lua/plenary.nvim' },
+			{ "nvim-telescope/telescope-live-grep-args.nvim" }
+		},
+		config = function()
+			require("telescope").load_extension("live_grep_args")
+		end
 	}
 
 	use({ 'rose-pine/neovim', as = 'rose-pine' })
@@ -70,4 +76,22 @@ return require('packer').startup(function(use)
 		-- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
 	}
 	use { "catppuccin/nvim", as = "catppuccin" }
+	use {
+		'numToStr/Comment.nvim',
+		config = function()
+			require('Comment').setup()
+		end
+	}
+	use({
+		"kylechui/nvim-surround",
+		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+		config = function()
+			require("nvim-surround").setup({
+				-- Configuration here, or leave empty to use defaults
+			})
+		end
+	})
+	use { 'nvim-tree/nvim-tree.lua' }
+	use 'nvim-treesitter/nvim-treesitter-context'
+	use "lukas-reineke/indent-blankline.nvim"
 end)

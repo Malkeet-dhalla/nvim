@@ -7,7 +7,7 @@ vim.opt.smarttab = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-vim.opt.signcolumn='auto'
+vim.opt.signcolumn = 'auto'
 
 vim.opt.wrap = false
 
@@ -24,3 +24,12 @@ vim.opt.termguicolors = true
 vim.opt.scrolloff = 4
 
 vim.g.leader = " "
+--disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+local cmd = vim.cmd
+
+cmd [[
+	autocmd FileType tex setlocal wrap linebreak
+]]
